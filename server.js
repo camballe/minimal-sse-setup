@@ -8,14 +8,14 @@ app.get("/", (req, res) => {
   res.setHeader("Content-Type", "text/event-stream");
   res.setHeader("Access-Control-Allow-Origin", "*");
 
-  const interval = setInterval(() => {
+  const intervalId = setInterval(() => {
     const date = new Date().toLocaleString();
     res.write(`data: ${date}\n\n`);
   }, 1000);
 
   res.on("close", () => {
     console.log("Client closed connection");
-    clearInterval(inervalId);
+    clearInterval(intervalId);
   });
 });
 
